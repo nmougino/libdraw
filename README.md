@@ -9,3 +9,7 @@ Elle servira en premier lieu pour le projet fdf.
 | --------|-------------|-------|
 | pixel   | XXXX    	|       |
 | line    | X  			|       |
+
+
+/giphy graphic library
+![Alt text](http://media0.giphy.com/media/IerVAJUS26GQg/giphy.gif)
