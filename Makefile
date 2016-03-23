@@ -6,7 +6,7 @@
 #    By: nmougino <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/26 01:02:57 by nmougino          #+#    #+#              #
-#    Updated: 2016/03/23 18:05:05 by nmougino         ###   ########.fr        #
+#    Updated: 2016/03/23 21:21:27 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,20 +30,31 @@ SRC =	srcs
 INC =	includes
 LIB =	libs
 
+NAME = libdraw.a
+
 MLXFLAGS = -framework OpenGL -framework AppKit
 
 CFLAGS = -Wall -Wextra -Werror
 
-NAME = libft.a
-
-glu: lib
-	gcc $(CFLAGS) $(LIB)/*.a main.c libdraw.a -I$(INC) $(MLXFLAGS)
-
-lib:
+glu:
 	gcc $(CFLAGS) -c $(SRC)/*.c main.c -I$(INC)
-	ar rc libdraw.a *.o
+	ar rc $(NAME) *.o
 	rm *.o
 
-uti:
-	gcc $(CFLAGS) $(LIB)/*.a main.c libdraw.a -I$(INC) $(MLXFLAGS)
+use: glu
+	gcc $(CFLAGS) $(LIB)/*.a main.c $(NAME) -I$(INC) $(MLXFLAGS)
 
+all: $(NAME)
+
+$(NAME):
+	make use
+
+clean:
+	rm -f *.o
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all glu use clean fclean re
