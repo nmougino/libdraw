@@ -5,10 +5,12 @@ Ces fonctions releves de la manipulation plus ou moins basique d'images.
 
 Elle servira en premier lieu pour le projet fdf.
 
-| Feature | In progress	| Done	|
-| --------|-------------|-------|
-| pixel   | XXXX    	|       |
-| line    | X  			|       |
+| Feature 		| In progress	| Done	|
+| --------------|---------------|-------|
+| pixel			| XXXXXXXXXXXXX	|   O   |
+| square		| XXXXXXXXXXXXX	|	O	|
+| empty square	| XXXXXXXXXXXXX	|	O	|
+| line			| X  			|       |
 
 
 /giphy graphic library

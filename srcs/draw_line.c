@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 23:41:15 by nmougino          #+#    #+#             */
-/*   Updated: 2016/03/23 18:00:24 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/03/23 18:47:30 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void			draw_line(t_img *img, t_px *src, t_px *dst)
 	{
 		draw_pixel(img, *src);
 		draw_pixel(img, *dst);
+		ft_putendl("prout");
 	}
 	else if (line.dx == 0)
 		draw_ver_line(img, line);

@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 23:19:05 by nmougino          #+#    #+#             */
-/*   Updated: 2016/03/23 15:10:51 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/03/23 19:00:19 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,25 @@
 
 int		main(void)
 {
-	/*
 	void	*mlx = mlx_init();
 	void	*win = mlx_new_window(mlx, 800, 800, "fenetre");
 
 	t_img	*img = draw_new_img(mlx, 800, 800);
 
-	tourne(mlx, win, img);
+	t_px	p1;
+	t_px	p2;
+
+	p1.x = 200;
+	p1.y = 200;
+	p1.color = 0;
+	p2.x = 350;
+	p2.y = 300;
+	p2.color = 0;
+
+	//draw_line(img, &p1, &p2);
+	draw_empty_square(img, p1, p2, 0.7);
+
+	mlx_put_image_to_window(mlx, win, img->img, 0, 0);
 	mlx_loop(mlx);
-	*/
-
-	int a = 673;
-	int err = -a >> 1;
-
-	ft_putnbrendl(a);
-	ft_putnbrendl(err);
-
-
 	return (0);
 }
