@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   draw_new_img.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/22 23:19:05 by nmougino          #+#    #+#             */
-/*   Updated: 2016/03/23 01:45:52 by nmougino         ###   ########.fr       */
+/*   Created: 2016/03/23 01:03:06 by nmougino          #+#    #+#             */
+/*   Updated: 2016/03/23 01:54:31 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "mlx.h"
+#include <stdlib.h>
 #include "libdraw.h"
 
-int		main(void)
+t_img	*draw_new_img(void *mlx, int width, int height)
 {
-	void	*mlx = mlx_init();
-	void	*win = mlx_new_window(mlx, 800, 800, "fenetre");
+	t_img	*ans;
 
-	t_img	*img = draw_new_img(mlx, 800, 800);
-
-	mlx_put_image_to_window(mlx, win, img->img, 0, 0);
-	mlx_loop(mlx);
+	ans = (t_img*)malloc(sizeof(t_img));
+	if (!ans)
+		return (NULL);
+	ans->img = mlx_new_image(mlx, width, height);
+	ans->width = width;
+	ans->height = height;
+	ans->data = mlx_get_data_addr(ans->img, &(ans->bpp), &(ans->size_line), &(ans->endian));
+	return (ans);
 }

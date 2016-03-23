@@ -6,14 +6,14 @@
 /*   By: nmougino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 22:48:04 by nmougino          #+#    #+#             */
-/*   Updated: 2016/03/23 00:38:38 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/03/23 01:49:25 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "fdf.h"
 
-static int	draw_toRgb(float vh)
+static int	ft_toRgb(float vh)
 {
 	if (vh < 0)
 		vh += 1.0;
