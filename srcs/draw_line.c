@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 23:41:15 by nmougino          #+#    #+#             */
-/*   Updated: 2016/03/23 19:42:49 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/03/23 19:54:56 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,31 @@
 
 void			draw_ver_line(t_img *img, t_line line)
 {
-	t_px	p1;
-	int		inc;
+	t_px	cur;
+	t_px	end;
 
-	p1 = (line.src.y < line.dst.y) ? line.src : line.dst;
-	inc = (line.src.y < line.dst.y) ? -1 : 1;
-	while (p1.y != line.dst.y)
+	cur = (line.src.y < line.dst.y) ? line.src : line.dst;
+	end = (line.src.y < line.dst.y) ? line.dst : line.src;
+	while (cur.y != end.y)
 	{
-		p1.color = draw_line_curcolor(line, p1);
-		draw_pixel(img, p1);
-		p1.y += inc;
+		cur.color = draw_line_curcolor(line, cur);
+		draw_pixel(img, cur);
+		cur.y++;
 	}
 }
 
 void			draw_hor_line(t_img *img, t_line line)
 {
-	t_px	p1;
-	int		inc;
+	t_px	cur;
+	t_px	end;
 
-	p1 = (line.src.x < line.dst.x) ? line.src : line.dst;
-	inc = (line.src.x < line.dst.x) ? -1 : 1;
-	while (p1.y != line.dst.y)
+	cur = (line.src.x < line.dst.x) ? line.src : line.dst;
+	end = (line.src.x < line.dst.x) ? line.dst : line.src;
+	while (cur.x != end.x)
 	{
-		p1.color = draw_line_curcolor(line, p1);
-		draw_pixel(img, p1);
-		p1.x += inc;
+		cur.color = draw_line_curcolor(line, cur);
+		draw_pixel(img, cur);
+		cur.x++;
 	}
 }
 

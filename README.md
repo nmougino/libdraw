@@ -10,7 +10,7 @@ Elle servira en premier lieu pour le projet fdf.
 | pixel			| XXXXXXXXXXXXX	|   O   |
 | square		| XXXXXXXXXXXXX	|	O	|
 | empty square	| XXXXXXXXXXXXX	|	O	|
-| line			| XXXXXXXXXX	|       | reste la gestion du degrade en non ver/hor
+| line			| XXXXXXXXXXXXX	|   O	|
 
 we begin to be skilled
 
