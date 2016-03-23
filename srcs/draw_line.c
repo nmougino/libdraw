@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 23:41:15 by nmougino          #+#    #+#             */
-/*   Updated: 2016/03/23 17:47:19 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/03/23 18:00:24 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void			draw_ver_line(t_img *img, t_line line)
 {
 	t_px	p1;
 
-	p1 = *src;
+	p1 = line.src;
 	if (line.src.y > line.dst.y)
-		p1 = dst;
+		p1 = line.dst;
 	while (line.src.y <= line.dst.y)
 	{
 		p1.color = draw_line_curcolor(line, p1);
@@ -35,9 +35,9 @@ void			draw_hor_line(t_img *img, t_line line)
 {
 	t_px	p1;
 
-	p1 = *src;
+	p1 = line.src;
 	if (line.src.x > line.dst.x)
-		p1 = dst;
+		p1 = line.dst;
 	while (line.src.x <= line.dst.x)
 	{
 		p1.color = draw_line_curcolor(line, p1);
@@ -46,7 +46,7 @@ void			draw_hor_line(t_img *img, t_line line)
 	}
 }
 
-void			draw_besenham(t_img *img, t_line line)
+void			draw_bresenham(t_img *img, t_line line)
 {
 	int		e;
 	t_px	inc;
@@ -54,9 +54,9 @@ void			draw_besenham(t_img *img, t_line line)
 	inc.x = (line.dst.x - line.src.x < 0) ? -1 : 1;
 	inc.y = (line.dst.y - line.src.y < 0) ? -1 : 1;
 	e = -line.dx >> 1;
-	while (line.src.x != line.end.x)
+	while (line.src.x != line.dst.x)
 	{
-		line.src.color = draw_curcolor(line, line.src);
+		line.src.color = draw_line_curcolor(line, line.src);
 		draw_pixel(img, line.src);
 		e += line.dy;
 		while (e > 0)
@@ -86,5 +86,5 @@ void			draw_line(t_img *img, t_px *src, t_px *dst)
 	else if (line.dy == 0)
 		draw_hor_line(img, line);
 	else
-		draw_bresenham(line);
+		draw_bresenham(img, line);
 }

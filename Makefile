@@ -6,7 +6,7 @@
 #    By: nmougino <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/26 01:02:57 by nmougino          #+#    #+#              #
-#    Updated: 2016/03/23 13:08:19 by nmougino         ###   ########.fr        #
+#    Updated: 2016/03/23 18:05:05 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,5 +36,14 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = libft.a
 
-glu:
-	gcc $(CFLAGS) $(SRC)/*.c $(LIB)/*.a main.c -I$(INC) $(MLXFLAGS)
+glu: lib
+	gcc $(CFLAGS) $(LIB)/*.a main.c libdraw.a -I$(INC) $(MLXFLAGS)
+
+lib:
+	gcc $(CFLAGS) -c $(SRC)/*.c main.c -I$(INC)
+	ar rc libdraw.a *.o
+	rm *.o
+
+uti:
+	gcc $(CFLAGS) $(LIB)/*.a main.c libdraw.a -I$(INC) $(MLXFLAGS)
+

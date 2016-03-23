@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 02:00:06 by nmougino          #+#    #+#             */
-/*   Updated: 2016/03/23 17:23:32 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/03/23 18:15:03 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,21 @@ typedef	struct	s_line
 	int			dy;
 }				t_line;
 
-void			draw_pixel(t_img *img, t_px pt);
+void			draw_clear_img(t_img *img);
 
-void			draw_ver_line(t_img *img, t_px *src, t_px *dst, t_px d);
-void			draw_hor_line(t_img *img, t_px *src, t_px *dst, t_px d);
+float			draw_line_curcolor(t_line line, t_px cur);
+
+void			draw_ver_line(t_img *img, t_line line);
+void			draw_hor_line(t_img *img, t_line line);
+void			draw_bresenham(t_img *img, t_line line);
 void			draw_line(t_img *img, t_px *src, t_px *dst);
 
 t_img			*draw_new_img(void *mlx, int width, int height);
 
-void			draw_square(t_img *img, t_px p1, t_px p2, float color);
+t_line			draw_new_line(t_px *src, t_px *dst);
+
+void			draw_pixel(t_img *img, t_px pt);
+
 void			draw_empty_square(t_img *img, t_px p1, t_px p2, float color);
-
-void			draw_clear_img(t_img *img);
-
-t_line			draw_new_line(t_px *src,t_px dst)
+void			draw_square(t_img *img, t_px p1, t_px p2, float color);
 #endif
