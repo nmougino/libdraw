@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 02:00:06 by nmougino          #+#    #+#             */
-/*   Updated: 2016/03/23 13:46:30 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/03/23 17:23:32 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define LIBDRAW_H
 
 #include "mlx.h"
+#include "libft.h"
 
 typedef struct	s_img
 {
@@ -40,6 +41,14 @@ typedef	struct	s_px
 	float		color;
 }				t_px;
 
+typedef	struct	s_line
+{
+	t_px		src;
+	t_px		dst;
+	int			dx;
+	int			dy;
+}				t_line;
+
 void			draw_pixel(t_img *img, t_px pt);
 
 void			draw_ver_line(t_img *img, t_px *src, t_px *dst, t_px d);
@@ -52,4 +61,6 @@ void			draw_square(t_img *img, t_px p1, t_px p2, float color);
 void			draw_empty_square(t_img *img, t_px p1, t_px p2, float color);
 
 void			draw_clear_img(t_img *img);
+
+t_line			draw_new_line(t_px *src,t_px dst)
 #endif

@@ -6,82 +6,85 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 23:41:15 by nmougino          #+#    #+#             */
-/*   Updated: 2016/03/23 01:59:29 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/03/23 17:47:19 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libdraw.h"
-#include "libft.h"
 
 /*
-** Tracer une ligne en degrade
-*/
+ ** Tracer une ligne en degrade
+ */
 
-static float	draw_line_curcolor(t_px *src, t_px *dst, t_px delta, t_px tmp)
-{
-	float	ans;
-
-	ans = (float)(((((dst->x - tmp.x) + (dst->y - tmp.y)) * src->color)
-		+ (((src->x - tmp.x) + (src->y - tmp.y)) * dst->color)))
-		/ (float)(delta.x - delta.y);
-	return (ans);
-}
-
-void			draw_ver_line(t_img *img, t_px *src, t_px *dst, t_px d)
+void			draw_ver_line(t_img *img, t_line line)
 {
 	t_px	p1;
-	t_px	p2;
 
 	p1 = *src;
-	p2 = *dst;
-	if (src->y > dst->y)
+	if (line.src.y > line.dst.y)
+		p1 = dst;
+	while (line.src.y <= line.dst.y)
 	{
-		p1 = p2;
-		p2 = *src;
-	}
-	while (p1.y <= p2.y)
-	{
-		p1.color = draw_line_curcolor(src, dst, d, p1);
+		p1.color = draw_line_curcolor(line, p1);
 		draw_pixel(img, p1);
 		p1.y++;
 	}
 }
 
-void			draw_hor_line(t_img *img, t_px *src, t_px *dst, t_px d)
+void			draw_hor_line(t_img *img, t_line line)
 {
 	t_px	p1;
-	t_px	p2;
 
 	p1 = *src;
-	p2 = *dst;
-	if (src->x > dst->x)
+	if (line.src.x > line.dst.x)
+		p1 = dst;
+	while (line.src.x <= line.dst.x)
 	{
-		p1 = p2;
-		p2 = *src;
-	}
-	while (p1.x <= p2.x)
-	{
-		p1.color = draw_line_curcolor(src, dst, d, p1);
+		p1.color = draw_line_curcolor(line, p1);
 		draw_pixel(img, p1);
 		p1.x++;
 	}
 }
 
+void			draw_besenham(t_img *img, t_line line)
+{
+	int		e;
+	t_px	inc;
+
+	inc.x = (line.dst.x - line.src.x < 0) ? -1 : 1;
+	inc.y = (line.dst.y - line.src.y < 0) ? -1 : 1;
+	e = -line.dx >> 1;
+	while (line.src.x != line.end.x)
+	{
+		line.src.color = draw_curcolor(line, line.src);
+		draw_pixel(img, line.src);
+		e += line.dy;
+		while (e > 0)
+		{
+			draw_pixel(img, line.src);
+			e -= line.dx;
+			line.src.y += inc.y;
+		}
+		line.src.x += inc.x;
+	}
+
+}
+
 void			draw_line(t_img *img, t_px *src, t_px *dst)
 {
-	t_px	d;
+	t_line	line;
 
-	d.x = dst->x - src->x;
-	d.y = dst->y - src->y;
-	if (ft_abs(d.x) <= 1 && ft_abs(d.y) <= 1)
+	line = draw_new_line(src, dst);
+
+	if (line.dx <= 1 && line.dy <= 1)
 	{
 		draw_pixel(img, *src);
 		draw_pixel(img, *dst);
 	}
-	else if (d.x == 0)
-		draw_ver_line(img, src, dst, d);
-	else if (d.y == 0)
-		draw_hor_line(img, src, dst, d);
-	//else
-	//	draw_bresenham(src, dst, d);
+	else if (line.dx == 0)
+		draw_ver_line(img, line);
+	else if (line.dy == 0)
+		draw_hor_line(img, line);
+	else
+		draw_bresenham(line);
 }

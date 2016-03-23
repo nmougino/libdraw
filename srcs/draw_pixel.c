@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 23:47:57 by nmougino          #+#    #+#             */
-/*   Updated: 2016/03/23 01:56:48 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/03/23 16:39:58 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ void	draw_pixel(t_img *img, t_px pt)
 
 	col = 0;
 	if (pt.x < img->width && pt.y < img->height)
-	col = ((draw_toRgb(pt.color + (1.0 / 3.0))) * 65536)
-		+ ((draw_toRgb(pt.color)) * 256)
-		+ (draw_toRgb(pt.color - (1.0 / 3.0)));
-	*((int*)(unsigned long)(img->data + ((img->size_line * (pt.y))
-					+ ((pt.x) * (img->bpp / 8))))) = col;
+	{
+		col = ((draw_toRgb(pt.color + (1.0 / 3.0))) * 65536)
+			+ ((draw_toRgb(pt.color)) * 256)
+			+ (draw_toRgb(pt.color - (1.0 / 3.0)));
+		*((int*)(unsigned long)(img->data + ((img->size_line * (pt.y))
+						+ ((pt.x) * (img->bpp / 8))))) = col;
+	}
 }
