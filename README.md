@@ -10,8 +10,11 @@ Elle servira en premier lieu pour le projet fdf.
 | pixel			| XXXXXXXXXXXXX	|   O   |
 | square		| XXXXXXXXXXXXX	|	O	|
 | empty square	| XXXXXXXXXXXXX	|	O	|
-| line			| X  			|       |
+| line			| XXXXXXXXXX	|       | reste la gestion du degrade en non ver/hor
 
+we begin to be skilled
+
+![Alt text](http://media.giphy.com/media/lOCRuOzOMJ2g0/giphy-tumblr.gif)
 
 /giphy graphic library
 

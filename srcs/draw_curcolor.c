@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 16:23:51 by nmougino          #+#    #+#             */
-/*   Updated: 2016/03/23 17:47:32 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/03/23 19:22:12 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,9 @@ float	draw_line_curcolor(t_line line, t_px cur)
 		+ (((line.src.x - cur.x)
 		+ (line.src.y - cur.y)) * line.dst.color)))
 		/ (float)(line.dx - line.dy);
+	while (ans > 0)
+		ans -= 1;
+	while (ans < 0)
+		ans += 1;
 	return (ans);
 }
