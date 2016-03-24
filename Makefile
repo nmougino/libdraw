@@ -6,7 +6,7 @@
 #    By: nmougino <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/26 01:02:57 by nmougino          #+#    #+#              #
-#    Updated: 2016/03/23 21:21:27 by nmougino         ###   ########.fr        #
+#    Updated: 2016/03/23 21:58:11 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,12 +37,13 @@ MLXFLAGS = -framework OpenGL -framework AppKit
 CFLAGS = -Wall -Wextra -Werror
 
 glu:
-	gcc $(CFLAGS) -c $(SRC)/*.c main.c -I$(INC)
-	ar rc $(NAME) *.o
-	rm *.o
+	@echo "$(CYA)$(GRA)LIBDRAW compilation$(DEF)"
+	@gcc $(CFLAGS) -c $(SRC)/*.c -I$(INC)
+	@ar rc $(NAME) *.o
+	@rm *.o
 
 use: glu
-	gcc $(CFLAGS) $(LIB)/*.a main.c $(NAME) -I$(INC) $(MLXFLAGS)
+	gcc $(CFLAGS) $(LIB)/*.a maintest.c $(NAME) -I$(INC) $(MLXFLAGS)
 
 all: $(NAME)
 

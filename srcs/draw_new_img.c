@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 01:03:06 by nmougino          #+#    #+#             */
-/*   Updated: 2016/03/23 01:54:31 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/03/24 17:32:55 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_img	*draw_new_img(void *mlx, int width, int height)
 	ans->img = mlx_new_image(mlx, width, height);
 	ans->width = width;
 	ans->height = height;
-	ans->data = mlx_get_data_addr(ans->img, &(ans->bpp), &(ans->size_line), &(ans->endian));
+	ans->data = mlx_get_data_addr(ans->img, &(ans->bpp), &(ans->size_line),
+			&(ans->endian));
 	return (ans);
 }
