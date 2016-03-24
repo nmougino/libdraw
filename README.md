@@ -12,6 +12,7 @@ Elle servira en premier lieu pour le projet fdf.
 | empty square	| XXXXXXXXXXXXX	|	O	| ---------------- vide				|
 | line			| XXXXXXXXXXXXX	|   O	| dessine une ligne degradee		|
 
+FINI
 
 ![Alt text](https://media.giphy.com/media/mp1JYId8n0t3y/giphy.gif)
 
