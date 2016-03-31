@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 23:41:15 by nmougino          #+#    #+#             */
-/*   Updated: 2016/03/28 21:46:56 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/03/31 10:50:05 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,25 @@
 ** Tracer une ligne en degrade
 */
 
-static void	draw_the_line(float pasx, float pasy, t_img *img, t_line line)
-{
-	t_px	cur;
-	int		i;
-
-	i = 0;
-	while (i < line.n)
-	{
-		cur.x = line.src.x + (pasx * i);
-		cur.y = line.src.y + (pasy * i);
-		draw_pixel_rgb(img, cur, color);
-		i++;
-	}
-}
-
-void		draw_line(t_img *img, t_px *src, t_px *dst, int color)
+void		draw_line_rgb(t_img *img, t_px *src, t_px *dst, int color)
 {
 	float	pasx;
 	float	pasy;
 	t_px	d;
 	t_line	line;
+	t_px	cur;
 
 	line = draw_new_line(src, dst);
 	d.x = (dst->x - src->x);
 	d.y = (dst->y - src->y);
 	pasx = (float)d.x / line.n;
 	pasy = (float)d.y / line.n;
-	draw_the_line(pasx, pasy, img, line, color);
+	line.n--;
+	while (line.n >= 0)
+	{
+		cur.x = line.src.x + (pasx * line.n);
+		cur.y = line.src.y + (pasy * line.n);
+		draw_pixel_rgb(img, cur, color);
+		line.n--;
+	}
 }
