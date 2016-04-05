@@ -6,7 +6,7 @@
 #    By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/05 16:20:26 by nmougino          #+#    #+#              #
-#    Updated: 2016/04/05 20:35:18 by nmougino         ###   ########.fr        #
+#    Updated: 2016/04/05 20:49:24 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ ADDFLAGS =	-framework OpenGL -framework Appkit
 
 #	Binary
 NAME =		libdraw.a
+DST =
 
 #	Default rule
 DEFRULE =	glulib
@@ -45,6 +46,7 @@ OBJ =		$(SRC:.c=.o)
 LLIBS =		$(addprefix -L$(LIBDIR) -l, $(LIB))
 LIBAP =		$(addprefix $(LIBDIR)/, $(LIBA))
 OBJP =		$(addprefix $(OBJDIR)/, $(OBJ))
+DSTP =		$(addprefix mv $(NAME) , $(DST))
 
 #	Couleurs
 DEF		= \033[0m
@@ -61,6 +63,7 @@ CYA		= \033[36m
 WHI		= \033[37m
 
 .PHONY = all glu $(NAME) $(OBJDIR) clean fclean re
+
 
 # #
 #	RULES
@@ -94,16 +97,17 @@ $(OBJDIR):
 #	Lib rules
 $(LIB):
 	make -C lib$@/
-	mv lib$@/lib$@.a $(LIBDIR)
 
 librarize: $(OBJP)
 	@echo "$(GRA)$(GRE)@ ++ $(NAME) LIBRARIZATION$(DEF)"
 	ar rc $(NAME) $^
+	$(DSTP)
 
 #	Compilation rules
 $(NAME): $(OBJP)
 	@echo "$(GRA)$(GRE)@ ++ $(NAME) COMPILATION$(DEF)"
 	$(CC) $(CFLAGS) -o $@ $^ -I$(INCDIR) $(LLIBS) $(ADDFLAGS)
+	$(DSTP)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -o $@ -c $< -I$(INCDIR) $(LIBAP)
