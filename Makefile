@@ -6,22 +6,21 @@
 #    By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/05 16:20:26 by nmougino          #+#    #+#              #
-#    Updated: 2016/04/08 17:39:25 by nmougino         ###   ########.fr        #
+#    Updated: 2016/05/03 22:53:03 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#	Compilator - clang est plus sur que gcc
+#	Compilator
 CC =		clang
 CFLAGS =	-Wall -Wextra -Werror
 ADDFLAGS =
 
 #	Binary
-NAME =
-LIBNAME =	libdraw.a
-DST =
+NAME =		draw
+DST =		
 
 #	Default rule
-DEFRULE =	glulib
+DEFRULE =	alllib
 
 #	Dossiers utiles
 SRCDIR =	srcs
@@ -46,6 +45,7 @@ OBJ =		$(SRC:.c=.o)
 LLIBP =		$(addprefix -l, $(LIB))
 LIBP =		$(addprefix lib, $(LIB))
 OBJP =		$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
+LIBNAME =	$(addprefix lib, $(addsuffix .a, $(NAME)))
 
 #	Couleurs
 DEF =		\033[0m
@@ -103,7 +103,7 @@ $(OBJDIR):
 
 $(NAME): $(OBJDIR) $(OBJP) deplib
 	@echo "\n$(GRA)$(CYA)@ ++ $(NAME) compilation$(DEF)"
-	$(CC) $(CFLAGS)	-o $@ $(OBJP) -I$(INCDIR) -L$(LIBDIR) $(LLIBP) $(ADDFLAGS)
+	$(CC) $(CFLAGS)	-o $@ $(OBJP) -I$(INCDIR) -L$(LIBDIR) $(LLIBP)
 
 lib: $(OBJDIR) $(OBJP)
 	@echo "\n$(PUR)@ Library indexation$(DEF)"
@@ -116,7 +116,7 @@ deplib:
 #	MrProper's legacy
 clean:
 	@echo "\n$(RED)@ Objects deletion$(DEF)"
-	rm -rf $(OBJDIR)
+	@rm -rf $(OBJDIR)
 
 fclean: clean
 	@echo "\n$(RED)@ Binary deletion$(DEF)"
