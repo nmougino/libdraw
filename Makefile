@@ -6,7 +6,7 @@
 #    By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/05 16:20:26 by nmougino          #+#    #+#              #
-#    Updated: 2016/05/03 22:53:03 by nmougino         ###   ########.fr        #
+#    Updated: 2016/05/03 22:54:00 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ ADDFLAGS =
 
 #	Binary
 NAME =		draw
-DST =		
+DST =		../libs/
 
 #	Default rule
 DEFRULE =	alllib
