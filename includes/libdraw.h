@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 02:00:06 by nmougino          #+#    #+#             */
-/*   Updated: 2016/03/31 16:02:07 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/05/23 21:12:57 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,49 +22,56 @@
 # include "mlx.h"
 # include "libft.h"
 
-typedef struct	s_img
+typedef struct		s_img
 {
-	char		*data;
-	int			width;
-	int			height;
-	int			bpp;
-	int			size_line;
-	int			endian;
-	void		*img;
-}				t_img;
+	char			*data;
+	int				width;
+	int				height;
+	int				bpp;
+	int				size_line;
+	int				endian;
+	void			*img;
+}					t_img;
 
-typedef	struct	s_px
+typedef	struct		s_px
 {
-	int			x;
-	int			y;
-	float		color;
-}				t_px;
+	int				x;
+	int				y;
+	float			color;
+}					t_px;
 
-typedef	struct	s_line
+typedef	struct		s_upx
 {
-	t_px		src;
-	t_px		dst;
-	int			dx;
-	int			dy;
-	int			n;
-}				t_line;
+	unsigned int	x;
+	unsigned int	y;
+	float			color;
+}					t_upx;
 
-void			draw_clear_img(t_img *img, int color);
+typedef	struct		s_line
+{
+	t_px			src;
+	t_px			dst;
+	int				dx;
+	int				dy;
+	int				n;
+}					t_line;
 
-float			draw_line_curcolor(t_line line, t_px cur);
+void				draw_clear_img(t_img *img, int color);
 
-void			draw_line(t_img *img, t_px *src, t_px *dst);
+float				draw_line_curcolor(t_line line, t_px cur);
 
-void			draw_line_rgb(t_img *img, t_px *src, t_px *dst, int color);
+void				draw_line(t_img *img, t_px *src, t_px *dst);
 
-t_img			*draw_new_img(void *mlx, int width, int height);
+void				draw_line_rgb(t_img *img, t_px *src, t_px *dst, int color);
 
-t_line			draw_new_line(t_px *src, t_px *dst);
+t_img				*draw_new_img(void *mlx, int width, int height);
 
-void			draw_pixel(t_img *img, t_px pt);
+t_line				draw_new_line(t_px *src, t_px *dst);
 
-void			draw_pixel_rgb(t_img *img, t_px pt, int color);
+void				draw_pixel(t_img *img, t_px pt);
 
-void			draw_empty_square(t_img *img, t_px p1, t_px p2, float color);
-void			draw_square(t_img *img, t_px p1, t_px p2, float color);
+void				draw_pixel_rgb(t_img *img, t_px pt, int color);
+
+void				draw_empty_square(t_img *img, t_px p1, t_px p2, float color);
+void				draw_square(t_img *img, t_px p1, t_px p2, float color);
 #endif
