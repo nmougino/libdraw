@@ -6,7 +6,7 @@
 #    By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/05 16:20:26 by nmougino          #+#    #+#              #
-#    Updated: 2016/05/03 22:54:00 by nmougino         ###   ########.fr        #
+#    Updated: 2016/05/29 01:16:31 by nmougino         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC =		draw_clear_img.c \
 			draw_new_line.c \
 			draw_pixel.c \
 			draw_pixel_rgb.c \
+			draw_colour.c \
 			draw_square.c
 LIB =
 OBJ =		$(SRC:.c=.o)
@@ -112,7 +113,7 @@ lib: $(OBJDIR) $(OBJP)
 
 deplib:
 	$(addprefix make -C ,$(addsuffix /$(\n), $(LIBP)))
-	
+
 #	MrProper's legacy
 clean:
 	@echo "\n$(RED)@ Objects deletion$(DEF)"

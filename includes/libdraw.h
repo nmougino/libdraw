@@ -6,7 +6,7 @@
 /*   By: nmougino <nmougino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 02:00:06 by nmougino          #+#    #+#             */
-/*   Updated: 2016/05/23 21:12:57 by nmougino         ###   ########.fr       */
+/*   Updated: 2016/05/29 01:39:47 by nmougino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ typedef	struct		s_line
 	int				n;
 }					t_line;
 
+typedef struct		s_rgb
+{
+	int				r;
+	int				g;
+	int				b;
+}					t_rgb;
+
 void				draw_clear_img(t_img *img, int color);
 
 float				draw_line_curcolor(t_line line, t_px cur);
@@ -74,4 +81,6 @@ void				draw_pixel_rgb(t_img *img, t_px pt, int color);
 
 void				draw_empty_square(t_img *img, t_px p1, t_px p2, float color);
 void				draw_square(t_img *img, t_px p1, t_px p2, float color);
+
+int					draw_hsltorgb(int t, float s, float v);
 #endif
